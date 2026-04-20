@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  ============================================================
+  portfolio.html — Video Portfolio Page
+  ============================================================
+  This page displays all video work in a responsive grid.
+
+  ── HOW TO ADD A NEW VIDEO ──────────────────────────────────
+  1. Copy the entire <article class="video-card"> block (marked
+     with "── VIDEO CARD TEMPLATE ──" below).
+  2. Paste it inside <div class="portfolio-grid"> where you
+     want it to appear.
+  3. Fill in the fields:
+       • data-category   — used by the filter buttons (see below)
+       • YouTube Video ID — 11-character ID from the video URL
+       • Thumbnail URL   — YouTube auto-generates thumbnails:
+           https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
+       • Card title, description, year.
+
+  ── HOW TO ADD A NEW FILTER CATEGORY ──────────────────────
+  Add a button inside <div class="portfolio-filters">:
+    <button class="filter-btn" data-filter="your-category">Label</button>
+  Then set data-category="your-category" on each matching card.
+
+  ── FEATURED CARD ──────────────────────────────────────────
+  To make a card span the full width (two columns on desktop),
+  add the class "video-card--featured" to its <article> tag.
+  ============================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Video portfolio — browse cinematic films, event coverage, and creative projects.">
+    <title>Portfolio | Your Name</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ── Navigation (same on every page) ── -->
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="site-logo">Your<span>.</span>Name</a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.site-nav').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+                <a href="portfolio.html" class="active">Portfolio</a>
+                <a href="about.html">About</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- ── Page header ── -->
+    <main style="padding-top: 6rem;">
+        <section class="section">
+            <div class="container">
+
+                <span class="section__label">Work</span>
+                <h1 class="section__title">Portfolio</h1>
+                <p style="color:var(--text-muted); max-width:520px; margin-bottom:2.5rem;">
+                    A selection of cinematic films, event coverage, and creative projects.
+                    Click any video to watch.
+                </p>
+
+
+                <!-- ============================================================
+                     FILTER BUTTONS
+                     ============================================================
+                     Each button filters cards by their data-category attribute.
+                     "all" shows everything. Add categories to match your work.
+                     ============================================================ -->
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="short-film">Short Film</button>
+                    <button class="filter-btn" data-filter="event">Event</button>
+                    <button class="filter-btn" data-filter="commercial">Commercial</button>
+                    <button class="filter-btn" data-filter="music-video">Music Video</button>
+                    <!-- ── Add more categories here ── -->
+                </div>
+
+
+                <!-- ============================================================
+                     PORTFOLIO GRID
+                     ============================================================
+                     Each <article> below is one video card.
+
+                     ── VIDEO CARD TEMPLATE ─────────────────────────────────────
+                     Copy this block and paste it to add a new video:
+
+                     <article class="video-card" data-category="CATEGORY"
+                              data-video-id="YOUTUBE_VIDEO_ID"
+                              onclick="openModal(this)">
+                         <div class="video-card__thumb">
+                             <img
+                                 src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID/maxresdefault.jpg"
+                                 alt="Descriptive alt text"
+                                 loading="lazy">
+                             <div class="video-card__play">
+                                 <div class="play-icon">
+                                     <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                 </div>
+                             </div>
+                             <span class="video-card__tag">CATEGORY LABEL</span>
+                         </div>
+                         <div class="video-card__body">
+                             <h2 class="video-card__title">Video Title</h2>
+                             <p class="video-card__desc">Short description of the project.</p>
+                             <div class="video-card__meta">
+                                 <span>YEAR</span>
+                                 <span>Duration</span>
+                             </div>
+                         </div>
+                     </article>
+                     ─────────────────────────────────────────────────────────── -->
+
+                <div class="portfolio-grid" id="portfolioGrid">
+
+
+                    <!-- ══════════════════════════════════════════════════════════
+                         VIDEO 1 — FEATURED (spans full width on desktop)
+                         ══════════════════════════════════════════════════════════
+                         Replace XXXXXXXXXXX with a real YouTube video ID.
+                         To un-feature it, remove "video-card--featured".
+                    -->
+                    <article class="video-card video-card--featured"
+                             data-category="short-film"
+                             data-video-id="XXXXXXXXXXX"
+                             onclick="openModal(this)">
+                        <div class="video-card__thumb">
+                            <img
+                                src="https://img.youtube.com/vi/XXXXXXXXXXX/maxresdefault.jpg"
+                                alt="Featured short film thumbnail"
+                                loading="lazy">
+                            <div class="video-card__play">
+                                <div class="play-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <span class="video-card__tag">Short Film</span>
+                        </div>
+                        <div class="video-card__body">
+                            <h2 class="video-card__title">Featured Short Film Title</h2>
+                            <p class="video-card__desc">
+                                A brief description of what this project is about, the story it tells,
+                                and any notable context.
+                            </p>
+                            <div class="video-card__meta">
+                                <span>2024</span>
+                                <span>6 min</span>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <!-- ══════════════════════════════════════════════════════════
+                         VIDEO 2
+                         Replace YYYYYYYYYYY with a real YouTube video ID.
+                    -->
+                    <article class="video-card"
+                             data-category="event"
+                             data-video-id="YYYYYYYYYYY"
+                             onclick="openModal(this)">
+                        <div class="video-card__thumb">
+                            <img
+                                src="https://img.youtube.com/vi/YYYYYYYYYYY/maxresdefault.jpg"
+                                alt="Event video thumbnail"
+                                loading="lazy">
+                            <div class="video-card__play">
+                                <div class="play-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <span class="video-card__tag">Event</span>
+                        </div>
+                        <div class="video-card__body">
+                            <h2 class="video-card__title">Event Highlight Reel</h2>
+                            <p class="video-card__desc">
+                                Dynamic coverage of a live event — capturing energy, moments, and atmosphere.
+                            </p>
+                            <div class="video-card__meta">
+                                <span>2024</span>
+                                <span>3 min</span>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <!-- ══════════════════════════════════════════════════════════
+                         VIDEO 3
+                         Replace ZZZZZZZZZZZ with a real YouTube video ID.
+                    -->
+                    <article class="video-card"
+                             data-category="commercial"
+                             data-video-id="ZZZZZZZZZZZ"
+                             onclick="openModal(this)">
+                        <div class="video-card__thumb">
+                            <img
+                                src="https://img.youtube.com/vi/ZZZZZZZZZZZ/maxresdefault.jpg"
+                                alt="Commercial video thumbnail"
+                                loading="lazy">
+                            <div class="video-card__play">
+                                <div class="play-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <span class="video-card__tag">Commercial</span>
+                        </div>
+                        <div class="video-card__body">
+                            <h2 class="video-card__title">Brand Commercial — Client Name</h2>
+                            <p class="video-card__desc">
+                                Product or brand story told through cinematic visuals and strong narrative.
+                            </p>
+                            <div class="video-card__meta">
+                                <span>2023</span>
+                                <span>1:30 min</span>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <!-- ══════════════════════════════════════════════════════════
+                         VIDEO 4
+                         Replace WWWWWWWWWWW with a real YouTube video ID.
+                    -->
+                    <article class="video-card"
+                             data-category="music-video"
+                             data-video-id="WWWWWWWWWWW"
+                             onclick="openModal(this)">
+                        <div class="video-card__thumb">
+                            <img
+                                src="https://img.youtube.com/vi/WWWWWWWWWWW/maxresdefault.jpg"
+                                alt="Music video thumbnail"
+                                loading="lazy">
+                            <div class="video-card__play">
+                                <div class="play-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <span class="video-card__tag">Music Video</span>
+                        </div>
+                        <div class="video-card__body">
+                            <h2 class="video-card__title">Artist — Track Name</h2>
+                            <p class="video-card__desc">
+                                Official music video for [artist] — concept, direction, and post-production.
+                            </p>
+                            <div class="video-card__meta">
+                                <span>2023</span>
+                                <span>4 min</span>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <!-- ══════════════════════════════════════════════════════════
+                         ADD MORE VIDEOS BELOW — paste the template block above
+                         ══════════════════════════════════════════════════════════ -->
+
+                </div><!-- /portfolio-grid -->
+
+            </div>
+        </section>
+    </main>
+
+
+    <!-- ============================================================
+         LIGHTBOX MODAL
+         ============================================================
+         Clicking a card calls openModal() which injects the YouTube
+         iframe here so the video only loads when actually clicked.
+         ============================================================ -->
+    <div class="modal-overlay" id="videoModal" onclick="closeModal(event)">
+        <div class="modal-inner">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close video">&times;</button>
+            <!-- iframe is injected here by JavaScript -->
+            <div class="video-embed" id="modalEmbed"></div>
+        </div>
+    </div>
+
+
+    <!-- ── Footer ── -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-brand"><strong>Your Name</strong> — Videographer</div>
+            <div class="footer-links">
+                <a href="portfolio.html">Portfolio</a>
+                <a href="about.html">About</a>
+                <a href="https://youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer">YouTube</a>
+                <a href="https://instagram.com/yourhandle"  target="_blank" rel="noopener noreferrer">Instagram</a>
+            </div>
+        </div>
+        <div class="container">
+            <p class="footer-copy">&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- ============================================================
+         JAVASCRIPT — filter + lightbox (no external libraries)
+         ============================================================ -->
+    <script>
+        // ── Auto copyright year ──────────────────────────────────
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+
+        // ── Category filter ──────────────────────────────────────
+        // Reads data-filter from each button and data-category from
+        // each card, showing/hiding cards accordingly.
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards      = document.querySelectorAll('.video-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                cards.forEach(card => {
+                    const show = filter === 'all' || card.dataset.category === filter;
+                    // Fade in/out via opacity + pointer-events
+                    card.style.opacity        = show ? '1' : '0.15';
+                    card.style.pointerEvents  = show ? ''  : 'none';
+                });
+            });
+        });
+
+
+        // ── Lightbox / modal ────────────────────────────────────
+        // Opens a YouTube iframe in a modal overlay when a card
+        // is clicked. The iframe is only created on click so that
+        // the page loads fast.
+
+        function openModal(card) {
+            const videoId = card.dataset.videoId;
+            const embed   = document.getElementById('modalEmbed');
+            const modal   = document.getElementById('videoModal');
+
+            // Build the iframe — autoplay=1 starts the video immediately
+            embed.innerHTML = `
+                <iframe
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&color=white"
+                    title="Video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>`;
+
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden'; // prevent background scroll
+        }
+
+        function closeModal(event) {
+            // Only close if clicking the dark overlay (not the inner player)
+            if (event && event.target !== document.getElementById('videoModal')) return;
+
+            const embed = document.getElementById('modalEmbed');
+            const modal = document.getElementById('videoModal');
+
+            embed.innerHTML = '';          // stops the video / prevents audio bleed
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                document.getElementById('modalEmbed').innerHTML = '';
+                document.getElementById('videoModal').classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+
+</body>
+</html>

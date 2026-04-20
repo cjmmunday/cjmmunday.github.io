@@ -1,0 +1,906 @@
+/* ==========================================================================
+   VIDEOGRAPHY PORTFOLIO — styles.css
+   --------------------------------------------------------------------------
+   Minimalist, cinematic dark theme.
+   Accent colour: --accent (#e8c97d warm gold)
+   
+   Structure:
+     1. Reset & CSS Variables
+     2. Base / Typography
+     3. Layout Utilities
+     4. Navigation / Header
+     5. Hero Section (landing page)
+     6. Content Sections
+     7. About Page
+     8. Portfolio Grid
+     9. Video Card & Modal
+    10. Footer
+    11. Responsive Breakpoints
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. Reset & CSS Variables
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colours */
+    --bg:          #0a0a0a;       /* page background  */
+    --surface:     #131313;       /* card / elevated surfaces */
+    --border:      rgba(255,255,255,0.08);
+    --accent:      #e8c97d;       /* warm gold highlight */
+    --accent-dim:  rgba(232,201,125,0.15);
+    --text:        #d4d4d4;       /* body copy */
+    --text-muted:  #6b6b6b;      /* secondary labels */
+    --white:       #ffffff;
+
+    /* Typography */
+    --font-sans:   'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-display:'Inter', Georgia, serif;   /* swap to a serif if desired */
+
+    /* Spacing */
+    --section-gap: 6rem;
+    --radius:      4px;
+
+    /* Transitions */
+    --ease:        0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. Base / Typography
+   -------------------------------------------------------------------------- */
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+    /* Subtle film-grain texture via SVG data-URI */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+p {
+    color: var(--text);
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity var(--ease);
+}
+
+a:hover { opacity: 0.75; }
+
+img { display: block; max-width: 100%; }
+
+ul { list-style: none; }
+
+
+/* --------------------------------------------------------------------------
+   3. Layout Utilities
+   -------------------------------------------------------------------------- */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Narrow container for text-heavy pages */
+.container--narrow {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section {
+    padding: var(--section-gap) 0;
+}
+
+.section__label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.section__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    margin-bottom: 1rem;
+}
+
+.divider {
+    height: 1px;
+    background: var(--border);
+    border: none;
+    margin: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. Navigation / Header
+   -------------------------------------------------------------------------- */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.25rem 0;
+    background-color: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: background-color var(--ease);
+}
+
+.site-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Site wordmark / logo */
+.site-logo {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.site-logo span {
+    color: var(--accent);
+}
+
+/* Desktop nav links */
+.site-nav {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.site-nav a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--ease);
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+    color: var(--white);
+    opacity: 1;
+}
+
+/* Active nav indicator */
+.site-nav a.active {
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+}
+
+/* Hamburger — mobile only */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: transform var(--ease), opacity var(--ease);
+}
+
+
+/* --------------------------------------------------------------------------
+   5. Hero Section (index.html — landing page)
+   -------------------------------------------------------------------------- */
+.hero {
+    /* Full-viewport cinematic hero */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 2rem;
+    /* A dark gradient that darkens edges like a lens vignette */
+    background: radial-gradient(ellipse at center, rgba(20,20,20,0) 40%, rgba(0,0,0,0.9) 100%), var(--bg);
+}
+
+.hero__content {
+    max-width: 700px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero__eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+}
+
+.hero__title {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+}
+
+.hero__title em {
+    font-style: normal;
+    color: var(--accent);
+}
+
+.hero__sub {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+}
+
+/* CTA Buttons */
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all var(--ease);
+    cursor: pointer;
+    border: none;
+}
+
+/* Primary filled button */
+.btn--primary {
+    background: var(--accent);
+    color: #0a0a0a;
+}
+
+.btn--primary:hover {
+    background: #f0d898;
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+/* Ghost / outline button */
+.btn--ghost {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--border);
+}
+
+.btn--ghost:hover {
+    border-color: rgba(255,255,255,0.3);
+    color: var(--white);
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+/* Scroll indicator */
+.hero__scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+}
+
+.hero__scroll::before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--text-muted));
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+/* Featured reel embed on hero / landing */
+.hero-reel {
+    padding: 3rem 0 var(--section-gap);
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.hero-reel__title {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.video-embed {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: #000;
+}
+
+.video-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. Content Sections (shared)
+   -------------------------------------------------------------------------- */
+/* Two-column stat / highlight strip */
+.highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.highlight__number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+}
+
+.highlight__label {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+
+/* --------------------------------------------------------------------------
+   7. About Page
+   -------------------------------------------------------------------------- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+}
+
+/* Portrait / photo placeholder */
+.about-photo {
+    position: relative;
+}
+
+.about-photo__img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: var(--radius);
+    filter: grayscale(20%);
+}
+
+/* Placeholder shown when there is no real photo yet */
+.about-photo__placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.about-photo__caption {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
+}
+
+/* Gold accent line on the photo */
+.about-photo::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: 8px;
+    bottom: 8px;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    pointer-events: none;
+    opacity: 0.35;
+}
+
+.about-text h2 {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    margin-bottom: 1.5rem;
+}
+
+.about-text p {
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+}
+
+/* Skills / Services list */
+.skills-list {
+    margin-top: 2.5rem;
+}
+
+.skills-list__title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.skills-list ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+}
+
+.skills-list li {
+    font-size: 0.9rem;
+    color: var(--text);
+    padding-left: 1rem;
+    position: relative;
+}
+
+.skills-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+/* Contact CTA on about page */
+.about-cta {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.about-cta p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. Portfolio Grid
+   -------------------------------------------------------------------------- */
+/* Filter tabs */
+.portfolio-filters {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.filter-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 0.45rem 1.1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all var(--ease);
+    font-family: inherit;
+}
+
+.filter-btn:hover {
+    border-color: rgba(255,255,255,0.25);
+    color: var(--white);
+}
+
+.filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0a0a0a;
+}
+
+/* Responsive masonry-like grid */
+/*
+   HOW TO ADD MORE VIDEOS
+   ─────────────────────────────────────────────────────────────────────────
+   Copy one of the <article class="video-card"> blocks in portfolio.html
+   and paste it inside <div class="portfolio-grid">.
+   Update the YouTube video ID and all the text fields.
+   See portfolio.html for a step-by-step comment guide.
+   ─────────────────────────────────────────────────────────────────────────
+*/
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+/* Featured item spans two columns on wide screens */
+.video-card--featured {
+    grid-column: span 2;
+}
+
+/* --------------------------------------------------------------------------
+   9. Video Card
+   -------------------------------------------------------------------------- */
+.video-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color var(--ease), transform var(--ease);
+    cursor: pointer;
+}
+
+.video-card:hover {
+    border-color: rgba(232,201,125,0.4);
+    transform: translateY(-3px);
+}
+
+/* Thumbnail wrapper — 16:9 */
+.video-card__thumb {
+    position: relative;
+    padding-bottom: 56.25%;
+    background: #000;
+    overflow: hidden;
+}
+
+.video-card__thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, opacity var(--ease);
+    opacity: 0.85;
+}
+
+.video-card:hover .video-card__thumb img {
+    transform: scale(1.03);
+    opacity: 1;
+}
+
+/* Play button overlay */
+.video-card__play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.3);
+    transition: background var(--ease);
+}
+
+.video-card:hover .video-card__play {
+    background: rgba(0,0,0,0.15);
+}
+
+.play-icon {
+    width: 52px;
+    height: 52px;
+    background: rgba(0,0,0,0.6);
+    border: 2px solid rgba(255,255,255,0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--ease), border-color var(--ease), transform var(--ease);
+}
+
+.video-card:hover .play-icon {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.08);
+}
+
+.play-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--white);
+    margin-left: 3px; /* optical centering */
+}
+
+.video-card:hover .play-icon svg {
+    fill: #0a0a0a;
+}
+
+/* Card category tag */
+.video-card__tag {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    color: var(--accent);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    border-radius: 2px;
+}
+
+/* Card text body */
+.video-card__body {
+    padding: 1.25rem;
+}
+
+.video-card__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+}
+
+.video-card__desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.video-card__meta {
+    margin-top: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Lightbox / modal overlay */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(0,0,0,0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.modal-overlay.open {
+    display: flex;
+}
+
+.modal-inner {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+}
+
+.modal-close {
+    position: absolute;
+    top: -2.5rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color var(--ease);
+    font-family: inherit;
+}
+
+.modal-close:hover { color: var(--white); }
+
+
+/* --------------------------------------------------------------------------
+   10. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 0;
+    margin-top: 2rem;
+}
+
+.site-footer .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.footer-brand {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.footer-brand strong {
+    color: var(--white);
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--ease);
+}
+
+.footer-links a:hover {
+    color: var(--white);
+    opacity: 1;
+}
+
+.footer-copy {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    margin-top: 1rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   11. Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+
+/* Tablet */
+@media (max-width: 900px) {
+    :root { --section-gap: 4rem; }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .about-photo { max-width: 380px; margin: 0 auto; }
+
+    .video-card--featured {
+        grid-column: span 1;
+    }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    :root { --section-gap: 3rem; }
+
+    .container,
+    .container--narrow {
+        padding: 0 1.25rem;
+    }
+
+    /* Show hamburger, hide desktop nav */
+    .nav-toggle { display: flex; }
+
+    .site-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(10,10,10,0.98);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 0;
+    }
+
+    .site-nav.open { display: flex; }
+
+    .site-nav a {
+        padding: 0.85rem 2rem;
+        width: 100%;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .site-nav a:last-child { border-bottom: none; }
+
+    .hero__title { font-size: clamp(2rem, 10vw, 3.5rem); }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .highlights {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .site-footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links { justify-content: center; }
+
+    .skills-list ul {
+        grid-template-columns: 1fr;
+    }
+}

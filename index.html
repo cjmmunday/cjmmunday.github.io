@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  ============================================================
+  index.html — Landing Page
+  ============================================================
+  This is the home / splash page of the videography portfolio.
+
+  Sections on this page:
+    • .site-header  — fixed top navigation bar
+    • .hero         — full-viewport cinematic intro
+    • .hero-reel    — featured showreel YouTube embed
+    • .highlights   — quick-stat strip (projects, years, etc.)
+    • .site-footer  — copyright and links
+
+  To update the showreel:
+    1. Go to the YouTube video you want to embed.
+    2. Click Share → Embed and copy the video ID from the URL.
+       e.g. https://www.youtube.com/watch?v=XXXXXXXXXXX  →  ID = XXXXXXXXXXX
+    3. Replace "XXXXXXXXXXX" in the <iframe src="..."> below.
+  ============================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ── SEO meta ── Update name and description ── -->
+    <meta name="description" content="Videography portfolio — cinematic films, event coverage, and creative storytelling.">
+    <title>Your Name | Videographer</title>
+
+    <!-- Stylesheet (single file for the whole site) -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Optional: Google Fonts — Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ============================================================
+         NAVIGATION — shared across all pages
+         Update links if you rename any pages.
+         The "active" class highlights the current page in the nav.
+         ============================================================ -->
+    <header class="site-header">
+        <div class="container">
+
+            <!-- Site logo / name — replace "YOUR NAME" with real name -->
+            <a href="index.html" class="site-logo">Your<span>.</span>Name</a>
+
+            <!-- Mobile hamburger button -->
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.site-nav').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="site-nav">
+                <a href="index.html" class="active">Home</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="about.html">About</a>
+                <!-- Add more nav links here if needed -->
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- ============================================================
+         HERO — full-viewport cinematic landing
+         ============================================================ -->
+    <section class="hero">
+        <div class="hero__content">
+
+            <!-- Eyebrow label — small text above the main title -->
+            <span class="hero__eyebrow">Videographer &amp; Cinematographer</span>
+
+            <!-- Main headline — update to your friend's tagline -->
+            <h1 class="hero__title">
+                Telling Stories<br>Through <em>Motion</em>
+            </h1>
+
+            <!-- Supporting paragraph — keep it short and punchy -->
+            <p class="hero__sub">
+                Cinematic films, event coverage, and creative visual storytelling
+                — crafted with intention.
+            </p>
+
+            <!-- CTA buttons -->
+            <div class="btn-group">
+                <a href="portfolio.html" class="btn btn--primary">View Portfolio</a>
+                <a href="about.html"     class="btn btn--ghost">About Me</a>
+            </div>
+        </div>
+
+        <!-- Animated scroll nudge -->
+        <div class="hero__scroll" aria-hidden="true">Scroll</div>
+    </section>
+
+
+    <!-- ============================================================
+         SHOWREEL — featured YouTube embed
+         ============================================================
+         HOW TO UPDATE THE SHOWREEL VIDEO:
+           1. Open your YouTube video.
+           2. Copy the 11-character video ID from the URL:
+                https://www.youtube.com/watch?v=XXXXXXXXXXX
+                                                ^^^^^^^^^^^
+           3. Replace XXXXXXXXXXX in the iframe src below.
+         ============================================================ -->
+    <section class="hero-reel">
+        <div class="container">
+            <p class="hero-reel__title">Latest Showreel</p>
+
+            <div class="video-embed">
+                <!--
+                  Replace XXXXXXXXXXX with your YouTube video ID.
+                  The parameters after the "?" improve embed behaviour:
+                    rel=0        — don't show unrelated suggested videos
+                    modestbranding=1 — hide large YouTube logo
+                    color=white  — white progress bar
+                -->
+                <iframe
+                    src="https://www.youtube.com/embed/XXXXXXXXXXX?rel=0&modestbranding=1&color=white"
+                    title="Showreel"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         QUICK STATS — update numbers to match real experience
+         ============================================================ -->
+    <section class="section">
+        <div class="container">
+            <div class="highlights">
+
+                <!-- ── Stat 1 ── -->
+                <div>
+                    <span class="highlight__number">50+</span>
+                    <span class="highlight__label">Projects Delivered</span>
+                </div>
+
+                <!-- ── Stat 2 ── -->
+                <div>
+                    <span class="highlight__number">5</span>
+                    <span class="highlight__label">Years of Experience</span>
+                </div>
+
+                <!-- ── Stat 3 ── -->
+                <div>
+                    <span class="highlight__number">4K</span>
+                    <span class="highlight__label">Shooting Resolution</span>
+                </div>
+
+                <!-- ── Stat 4 ── -->
+                <div>
+                    <span class="highlight__number">∞</span>
+                    <span class="highlight__label">Stories to Tell</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         FOOTER — shared across all pages
+         Update social links and copyright name.
+         ============================================================ -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-brand">
+                <strong>Your Name</strong> — Videographer
+            </div>
+
+            <div class="footer-links">
+                <a href="portfolio.html">Portfolio</a>
+                <a href="about.html">About</a>
+                <!-- Add a mailto link or contact page when ready -->
+                <!-- <a href="mailto:you@example.com">Contact</a> -->
+
+                <!-- Replace # with real social URLs -->
+                <a href="https://youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer">YouTube</a>
+                <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </div>
+
+        </div>
+        <div class="container">
+            <p class="footer-copy">&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Auto-update the copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
