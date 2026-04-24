@@ -31,8 +31,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Video portfolio — browse cinematic films, event coverage, and creative projects.">
-    <title>Portfolio | Your Name</title>
+    <meta name="description" content="Video portfolio — browse films, documentaries, and creative projects.">
+    <title>Portfolio |  Chris Munday</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +43,7 @@
     <!-- ── Navigation (same on every page) ── -->
     <header class="site-header">
         <div class="container">
-            <a href="index.html" class="site-logo">Your<span>.</span>Name</a>
+            <a href="index.html" class="site-logo">Chris<span>.</span>Munday</a>
             <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.site-nav').classList.toggle('open')">
                 <span></span><span></span><span></span>
             </button>
@@ -64,7 +64,7 @@
                 <span class="section__label">Work</span>
                 <h1 class="section__title">Portfolio</h1>
                 <p style="color:var(--text-muted); max-width:520px; margin-bottom:2.5rem;">
-                    A selection of cinematic films, event coverage, and creative projects.
+                    A selection of films, documentaries, and creative projects.
                     Click any video to watch.
                 </p>
 
@@ -78,8 +78,8 @@
                 <div class="portfolio-filters">
                     <button class="filter-btn active" data-filter="all">All</button>
                     <button class="filter-btn" data-filter="short-film">Short Film</button>
-                    <button class="filter-btn" data-filter="event">Event</button>
-                    <button class="filter-btn" data-filter="commercial">Commercial</button>
+                    <button class="filter-btn" data-filter="Documentary">Documentary</button>
+                    <button class="filter-btn" data-filter="Spec Work">Spec Work</button>
                     <button class="filter-btn" data-filter="music-video">Music Video</button>
                     <!-- ── Add more categories here ── -->
                 </div>
@@ -163,23 +163,23 @@
                          Replace YYYYYYYYYYY with a real YouTube video ID.
                     -->
                     <article class="video-card"
-                             data-category="event"
+                             data-category="Documentary"
                              data-video-id="YYYYYYYYYYY"
                              onclick="openModal(this)">
                         <div class="video-card__thumb">
                             <img
                                 src="https://img.youtube.com/vi/YYYYYYYYYYY/maxresdefault.jpg"
-                                alt="Event video thumbnail"
+                                alt="Documentary video thumbnail"
                                 loading="lazy">
                             <div class="video-card__play">
                                 <div class="play-icon">
                                     <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                                 </div>
                             </div>
-                            <span class="video-card__tag">Event</span>
+                            <span class="video-card__tag">Documentary</span>
                         </div>
                         <div class="video-card__body">
-                            <h2 class="video-card__title">Event Highlight Reel</h2>
+                            <h2 class="video-card__title">Documentary Highlight Reel</h2>
                             <p class="video-card__desc">
                                 Dynamic coverage of a live event — capturing energy, moments, and atmosphere.
                             </p>
@@ -286,7 +286,7 @@
     <!-- ── Footer ── -->
     <footer class="site-footer">
         <div class="container">
-            <div class="footer-brand"><strong>Your Name</strong> — Videographer</div>
+            <div class="footer-brand"><strong>Chris Munday</strong> — Videographer & Editor</div>
             <div class="footer-links">
                 <a href="portfolio.html">Portfolio</a>
                 <a href="about.html">About</a>
@@ -295,7 +295,7 @@
             </div>
         </div>
         <div class="container">
-            <p class="footer-copy">&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+            <p class="footer-copy">&copy; <span id="year"></span> Chris Munday. All rights reserved.</p>
         </div>
     </footer>
 
