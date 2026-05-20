@@ -130,11 +130,11 @@
                     -->
                     <article class="video-card video-card--featured"
                              data-category="short-film"
-                             data-video-id="XXXXXXXXXXX"
+                             data-video-id="2qRGB0EZErY"
                              onclick="openModal(this)">
                         <div class="video-card__thumb">
                             <img
-                                src="https://img.youtube.com/vi/XXXXXXXXXXX/maxresdefault.jpg"
+                                src="https://img.youtube.com/vi/2qRGB0EZErY/maxresdefault.jpg"
                                 alt="Featured short film thumbnail"
                                 loading="lazy">
                             <div class="video-card__play">
@@ -152,7 +152,7 @@
                             </p>
                             <div class="video-card__meta">
                                 <span>2024</span>
-                                <span>6 min</span>
+                                <span>25:48 min</span>
                             </div>
                         </div>
                     </article>
@@ -164,11 +164,11 @@
                     -->
                     <article class="video-card"
                              data-category="Documentary"
-                             data-video-id="YYYYYYYYYYY"
+                             data-video-id="_AP0Je04VsU"
                              onclick="openModal(this)">
                         <div class="video-card__thumb">
                             <img
-                                src="https://img.youtube.com/vi/YYYYYYYYYYY/maxresdefault.jpg"
+                                src="https://img.youtube.com/vi/_AP0Je04VsU/maxresdefault.jpg"
                                 alt="Documentary video thumbnail"
                                 loading="lazy">
                             <div class="video-card__play">
@@ -185,7 +185,7 @@
                             </p>
                             <div class="video-card__meta">
                                 <span>2024</span>
-                                <span>3 min</span>
+                                <span>9:34 min</span>
                             </div>
                         </div>
                     </article>
@@ -290,7 +290,7 @@
             <div class="footer-links">
                 <a href="portfolio.html">Portfolio</a>
                 <a href="about.html">About</a>
-                <a href="https://youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer">YouTube</a>
+                <a href="https://youtube.com/@chrismunday0" target="_blank" rel="noopener noreferrer">YouTube</a>
                 <a href="https://instagram.com/yourhandle"  target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
         </div>
@@ -342,14 +342,19 @@
             const embed   = document.getElementById('modalEmbed');
             const modal   = document.getElementById('videoModal');
 
-            // Build the iframe — autoplay=1 starts the video immediately
+          // Build the iframe
             embed.innerHTML = `
                 <iframe
-                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&color=white"
-                    title="Video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0"
+                    title="YouTube video player"
+                    frameborder="0"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen>
-                </iframe>`;
+                </iframe>
+            `;
 
             modal.classList.add('open');
             document.body.style.overflow = 'hidden'; // prevent background scroll
